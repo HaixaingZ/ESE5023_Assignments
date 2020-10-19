@@ -74,6 +74,16 @@ Pascal_triangle <- function(k){
     }
   }
 }
+# this problem is relatively sample and there is no need to use this package
+# make sure you have the ability of considering this problem in program perspect
+# the core idea of Pascal Triangle is iteration, basically, you can write a program by this thought
+# the basic feature of Pascal Triangle can be discribed in this formular: 
+#         initiate(p_value=1)
+#         for(i in 1:col){
+#             p_value<-p_value*(row-i+1)/i }
+#         print(p_value)
+# please try any of the method menthioned above, I do think it is very sample to realize
+
 Pascal_triangle(100)
 Pascal_triangle(200)
 
@@ -189,3 +199,29 @@ for (year in 2010:2020) {
 }
 row.names(draft) <- c(2010:2020)
 print(draft)
+
+# here is a referrence work for you
+# make sure you can understand the most importent part of this course--data programing and data processing
+# attatchment file "SAC CITY.csv" has been uploaded into the main menu of this repo.
+# good luck for you 
+## 7.1
+data <- read.csv("SAC CITY.csv",T)  ## sac city的降水数据
+PRCP <- data$PRCP                   
+DATE <- data$DATE
+PRCP <- as.numeric(PRCP)
+PRCP[which(PRCP < 0)] <- NA
+DATE <- as.Date(DATE)
+## 7.2
+plot(DATE,PRCP,lwd=1,type="l",col="blue")
+## 7.3
+max(PRCP,na.rm=T)     ##最大日降水量
+DATE[which(PRCP == max(PRCP,na.rm=T))] ##最大日降水发生的时间
+mean(PRCP,na.rm=T)    ##日降水的均值
+sum(PRCP,na.rm=T)/15  ##2005-2019年平均降水
+i <- 0
+for (ii in 1:5455) {
+  if(!is.na(PRCP[ii]) & PRCP[ii]>0){
+    i= i+1
+  }
+}
+print(i/15)           ##2005-2019平均每年有降水的天数
