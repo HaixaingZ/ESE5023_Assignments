@@ -18,6 +18,10 @@ Rainfall_day_tbl %>%
     increse_rate = mean(((Rainfall_day_tbl$Seeded_Day)-mean(Rainfall_day_tbl$Unseeded_Day))/mean(Rainfall_day_tbl$Unseeded_Day))
   )
 t.test(Unseeded_Day, Seeded_Day)
+# MingYANG noticed: 
+# you don`t need to obtain the average value of rainfall
+# do "t.test(Unseeded_Day,Seeded_Day)" directly after plot
+# the end
 
 #2
 TR_bone <- read.csv("PS3_data.csv",header = T)
@@ -36,6 +40,11 @@ ggplot(TR_bone_tbl, aes(x=Bone_type, y=OIC, fill=Bone_type))+
 #anova one way test
 AOW_TR <- aov(OIC~Bone_type, data = TR_bone_tbl)
 summary(AOW_TR)
+# MingYANG noticedï¼š
+# right analysis wrong conclusion
+# statistically the temperature are different, but they are in totally Within 4 degrees centigrade 
+# so this Tyrannosaurus  should be warm-blooded
+# the end
 
 #3
 V_Z <- read.csv("PS3_data.csv",header = T)
@@ -61,7 +70,7 @@ plot(Temperature~Elevation, data = matrix1)
 regression_line <- lm(Temperature~Elevation, data = matrix1)
 abline(regression_line, col='red')
 summary(regression_line)$coefficients[2,1]
-#summary(regression_line)$coefficients[,1] or coef(regression_line) µÚÒ»¸öÊÇ½Ø¾à£¬µÚ¶þ¸öÊÇÐ±ÂÊ
+#summary(regression_line)$coefficients[,1] or coef(regression_line) ç¬¬ä¸€ä¸ªæ˜¯æˆªè·ï¼Œç¬¬äºŒä¸ªæ˜¯æ–œçŽ‡
 #learn from https://blog.csdn.net/dingchenxixi/article/details/50543822
 lapse_rate <- summary(regression_line)$coefficients[2,1]*1000
 lapse_rate
@@ -79,7 +88,7 @@ BBT_tbl %>%
   ggplot(aes(y = Distance,x = Velocity))+
   geom_point()+
   #5.2
-  geom_smooth(method="lm", formula = y ~ x)+ # learn from https://blog.csdn.net/weixin_42933967/article/details/96200165 ÏÂÒ»ÐÐÒ²ÊÇ
+  geom_smooth(method="lm", formula = y ~ x)+ # learn from https://blog.csdn.net/weixin_42933967/article/details/96200165 ä¸‹ä¸€è¡Œä¹Ÿæ˜¯
   stat_poly_eq(aes(label = paste(..eq.label.., ..adj.rr.label.., sep = '~~~~')), formula = y ~ x, parse = T) +
   theme_classic()
 #5.3
@@ -112,6 +121,19 @@ plot(train_subset_result)
 #6.2
 test_subset_result <- regsubsets(perf ~ syct+mmin+mmax+cach+chmin+chmax, data=cpu_test_set, nbest=2, nvmax = 6)
 plot(test_subset_result)
+# 6.2
+model_1 <- lm(perf~syct+mmin+mmax+cach+chmin+chmax, data = train)
+summary(model_1)
+
+# MingYANG noticedï¼š
+# try using the following code:
+# real values
+plot(test$perf,type = "o",col = 'red')
+# predicted values
+lines(predict(model_1,test),type = "o", col = 'blue')
+# quantify the mean bias between actual pref values and predicted pref values
+mean(test$perf - predict(model_1,test))
+# the end
 
 #7
 data_Lab <- read.csv("CMMNDHgfinal.csv",header = T)
