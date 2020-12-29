@@ -12,6 +12,9 @@ td_tbl %>%
   ggplot(aes(x = UUID, y = Geoid_height, color=UUID))+
   geom_boxplot(na.rm = T)+
   theme_classic()
+# MingYANG noticed:
+# it is not clear and aesthetic, maybe you can transform height(y-axis) as log data
+# the end 
 
 #Time series flying hight
 install.packages("lubridate")
@@ -29,6 +32,9 @@ xaxis <- seq(Date_start1, Date_end1, by = "day")
 High_ts <- ts(TS_data$Geoid_height[1:136], start=c(2020, JD_start1), frequency = 365)
 str(High_ts)
 plot(xaxis, High_ts, type = "l")
+# MingYANG noticed:
+# it is too simple, and should be classified into 1 point plot given by Prof.ZHU in the explaination of this assignment
+# the end 
 
 #Histogram
 td_tbl %>%
@@ -36,6 +42,9 @@ td_tbl %>%
   ggplot(aes( x = Speed, color=UUID))+
   geom_histogram()+
   theme_classic() 
+# MingYANG noticed:
+# it`s goof for combining three groups of data into one histogram, but it is not aesthetic
+# the end 
 
 #Scatter plot
 td_tbl %>%
@@ -46,6 +55,9 @@ td_tbl %>%
   theme_classic()+
   ylim(0,180)+
   xlim(0,180)
+# MingYANG noticed:
+# it is not clear and aesthetic, xlim and ylim should be well-matched
+# the end 
 
 #Image plot
 
@@ -71,6 +83,9 @@ plot(temperture_ts, type = "l")
 #2.2
 temperture_components <- decompose(temperture_ts)
 plot(temperture_components)
+# MingYANG noticed:
+# Check whether the error part follows a white noise distribution.
+# the end
 
 #2.3
 acf(temperture_ts)
@@ -79,6 +94,10 @@ install.packages("forecast")
 library(forecast)
 model_arima <- auto.arima(temperture_ts)
 model_arima
+# MingYANG noticed:
+# Describe the fitting process in details in your report.
+# the end
+
 #2.4
 bdt2 <- bdt %>%
   filter(date1 < "2020-08")
@@ -93,3 +112,4 @@ bdt %>%
   filter(date1 > "2020-08") #check 2020-08 actual T
 forecast_2meanT$mean[1] #Sep. T prediction
 forecast_2meanT$mean[2] #Sep. T prediction
+
