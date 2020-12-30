@@ -67,6 +67,9 @@ srad_china<-crop(srad_year,China_map)
 srad_china <- mask(srad_china,China,na.rm=T)
 plot(srad_china,  main="srad in china", col=col)
 contour(srad_china, add=T,levels=16000, col="red")
+# MingYANG noticed:
+# 1.3 & 1.4 missing
+# the end
 
 #2.1
 cd ~
