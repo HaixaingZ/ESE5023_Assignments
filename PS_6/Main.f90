@@ -42,7 +42,7 @@ end program Main
 
 ! MingYANG noticed:
 ! (1) in this question, M and N are not all in n×n
-! (2) using "matmul" can`t get the right answer(and where is your answer? I can`t obtain it)
+! (2) using "matmul" can`t get the right answer
 ! (3) please write the answer with the format of "(f8.1)"
-! (4) who is the plagiarist between you, Wangwang QIU and Chen Ding?
+! (4) who is the plagiarist between you, Wangwang QIU and Chen DING?
 ! the end
